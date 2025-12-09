@@ -3,6 +3,11 @@ export default () => ({
   port: parseInt(process.env.PORT || '3000', 10),
   apiPrefix: process.env.API_PREFIX || 'api/v1',
 
+  // CORS configuration
+  cors: {
+    origins: process.env.CORS_ORIGINS || 'http://localhost:3000',
+  },
+
   // DATABASE_URL takes priority over individual DB_ variables
   databaseUrl: process.env.DATABASE_URL,
 
