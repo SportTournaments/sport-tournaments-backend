@@ -110,9 +110,7 @@ describe('RegistrationsService', () => {
   describe('create', () => {
     const createDto: CreateRegistrationDto = {
       clubId: 'club-1',
-      teamName: 'Test Team',
       coachName: 'John Coach',
-      coachEmail: 'coach@test.com',
       coachPhone: '+40123456789',
     };
 
@@ -347,7 +345,6 @@ describe('RegistrationsService', () => {
         'registration-1',
         'organizer-1',
         UserRole.ORGANIZER,
-        'Team does not meet requirements',
       );
 
       expect(result.status).toBe(RegistrationStatus.REJECTED);

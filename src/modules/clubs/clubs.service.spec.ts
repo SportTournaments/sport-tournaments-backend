@@ -20,7 +20,7 @@ describe('ClubsService', () => {
     country: 'Romania',
     organizerId: 'owner-1',
     foundedYear: 2000,
-    logoUrl: 'https://example.com/logo.png',
+    logo: 'https://example.com/logo.png',
     website: 'https://testfc.com',
     contactEmail: 'contact@testfc.com',
     contactPhone: '+40 123 456 789',

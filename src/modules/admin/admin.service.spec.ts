@@ -324,38 +324,32 @@ describe('AdminService', () => {
 
   describe('sendBroadcastNotification', () => {
     it('should send broadcast notification to all users', async () => {
-      mockUsersRepo.createQueryBuilder.mockReturnValue({
-        select: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        getMany: jest
-          .fn()
-          .mockResolvedValue([{ id: 'user-1' }, { id: 'user-2' }]),
-      });
+      mockUsersRepo.createQueryBuilder.mockReturnValue(
+        createMockQueryBuilder([{ id: 'user-1' }, { id: 'user-2' }], 2),
+      );
       mockNotificationsRepo.create.mockReturnValue({});
       mockNotificationsRepo.save.mockResolvedValue([{}, {}]);
 
-      const result = await service.sendBroadcastNotification({
-        title: 'Test',
-        message: 'Test message',
-      });
+      const result = await service.sendBroadcastNotification(
+        'Test',
+        'Test message',
+      );
 
       expect(result.sent).toBe(2);
     });
 
     it('should filter by role', async () => {
-      mockUsersRepo.createQueryBuilder.mockReturnValue({
-        select: jest.fn().mockReturnThis(),
-        where: jest.fn().mockReturnThis(),
-        getMany: jest.fn().mockResolvedValue([{ id: 'user-1' }]),
-      });
+      mockUsersRepo.createQueryBuilder.mockReturnValue(
+        createMockQueryBuilder([{ id: 'user-1' }], 1),
+      );
       mockNotificationsRepo.create.mockReturnValue({});
       mockNotificationsRepo.save.mockResolvedValue([{}]);
 
-      const result = await service.sendBroadcastNotification({
-        title: 'Test',
-        message: 'Test message',
-        targetRole: UserRole.ORGANIZER,
-      });
+      const result = await service.sendBroadcastNotification(
+        'Test',
+        'Test message',
+        UserRole.ORGANIZER,
+      );
 
       expect(result.sent).toBe(1);
     });

@@ -6,7 +6,7 @@ import { Payment } from './entities/payment.entity';
 import { Registration } from '../registrations/entities/registration.entity';
 import { Tournament } from '../tournaments/entities/tournament.entity';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { PaymentStatus } from '../../common/enums';
+import { PaymentStatus, Currency } from '../../common/enums';
 
 // Mock Stripe
 jest.mock('stripe', () => {
@@ -30,7 +30,7 @@ describe('PaymentsService', () => {
     id: 'tournament-1',
     name: 'Test Tournament',
     participationFee: 200,
-    currency: 'EUR',
+    currency: Currency.EUR,
   };
 
   const mockClub = {
@@ -51,7 +51,7 @@ describe('PaymentsService', () => {
     id: 'payment-1',
     registrationId: 'registration-1',
     amount: 200,
-    currency: 'EUR',
+    currency: Currency.EUR,
     status: PaymentStatus.PENDING,
     stripePaymentIntentId: 'pi_test123',
   };

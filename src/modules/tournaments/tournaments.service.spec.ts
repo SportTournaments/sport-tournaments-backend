@@ -13,6 +13,7 @@ import {
   AgeCategory,
   TournamentLevel,
   UserRole,
+  Currency,
 } from '../../common/enums';
 
 describe('TournamentsService', () => {
@@ -30,12 +31,12 @@ describe('TournamentsService', () => {
     startDate: new Date('2025-06-15'),
     endDate: new Date('2025-06-17'),
     location: 'Brașov, Romania',
-    latitude: '45.6427',
-    longitude: '25.5887',
+    latitude: 45.6427,
+    longitude: 25.5887,
     maxTeams: 16,
     currentTeams: 12,
     participationFee: 200,
-    currency: 'EUR',
+    currency: Currency.EUR,
     status: TournamentStatus.DRAFT,
     isPublished: false,
     isPremium: false,
@@ -99,7 +100,7 @@ describe('TournamentsService', () => {
       longitude: 25.5887,
       maxTeams: 16,
       participationFee: 200,
-      currency: 'EUR',
+      currency: Currency.EUR,
     };
 
     it('should create a tournament successfully', async () => {

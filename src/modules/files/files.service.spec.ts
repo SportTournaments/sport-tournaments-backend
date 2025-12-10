@@ -56,7 +56,7 @@ describe('FilesService', () => {
     destination: '',
     filename: '',
     path: '',
-    stream: null as unknown as NodeJS.ReadableStream,
+    stream: null as unknown as import('stream').Readable,
   };
 
   const mockRepository = {
