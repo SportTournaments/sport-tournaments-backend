@@ -36,7 +36,6 @@ export class RegistrationsController {
   constructor(private readonly registrationsService: RegistrationsService) {}
 
   @Post('tournaments/:tournamentId/register')
-  @Roles(UserRole.PARTICIPANT, UserRole.ORGANIZER)
   @ApiOperation({ summary: 'Register a team for a tournament' })
   @ApiResponse({ status: 201, description: 'Registration created' })
   @ApiResponse({ status: 409, description: 'Already registered' })
@@ -53,7 +52,6 @@ export class RegistrationsController {
   }
 
   @Get('tournaments/:tournamentId/registrations')
-  @Roles(UserRole.ORGANIZER, UserRole.ADMIN)
   @ApiOperation({ summary: 'Get all registrations for a tournament' })
   @ApiResponse({ status: 200, description: 'List of registrations' })
   findByTournament(
@@ -68,7 +66,6 @@ export class RegistrationsController {
   }
 
   @Get('tournaments/:tournamentId/registrations/status')
-  @Roles(UserRole.ORGANIZER, UserRole.ADMIN)
   @ApiOperation({ summary: 'Get registration statistics for a tournament' })
   @ApiResponse({ status: 200, description: 'Registration statistics' })
   getStatusStatistics(
@@ -78,7 +75,6 @@ export class RegistrationsController {
   }
 
   @Get('registrations/my-registrations')
-  @Roles(UserRole.PARTICIPANT, UserRole.ORGANIZER)
   @ApiOperation({ summary: 'Get all registrations for current user clubs' })
   @ApiResponse({ status: 200, description: 'List of registrations' })
   getMyRegistrations(@CurrentUser() user: JwtPayload) {
@@ -94,7 +90,6 @@ export class RegistrationsController {
   }
 
   @Patch('registrations/:id')
-  @Roles(UserRole.PARTICIPANT, UserRole.ORGANIZER)
   @ApiOperation({ summary: 'Update registration' })
   @ApiResponse({ status: 200, description: 'Registration updated' })
   update(
@@ -125,7 +120,6 @@ export class RegistrationsController {
   }
 
   @Post('registrations/:id/approve')
-  @Roles(UserRole.ORGANIZER, UserRole.ADMIN)
   @ApiOperation({ summary: 'Approve registration' })
   @ApiResponse({ status: 200, description: 'Registration approved' })
   approve(
@@ -136,7 +130,6 @@ export class RegistrationsController {
   }
 
   @Post('registrations/:id/reject')
-  @Roles(UserRole.ORGANIZER, UserRole.ADMIN)
   @ApiOperation({ summary: 'Reject registration' })
   @ApiResponse({ status: 200, description: 'Registration rejected' })
   reject(
@@ -147,7 +140,6 @@ export class RegistrationsController {
   }
 
   @Post('registrations/:id/withdraw')
-  @Roles(UserRole.PARTICIPANT, UserRole.ORGANIZER)
   @ApiOperation({ summary: 'Withdraw registration' })
   @ApiResponse({ status: 200, description: 'Registration withdrawn' })
   withdraw(
@@ -158,7 +150,6 @@ export class RegistrationsController {
   }
 
   @Delete('registrations/:id')
-  @Roles(UserRole.PARTICIPANT, UserRole.ORGANIZER, UserRole.ADMIN)
   @ApiOperation({ summary: 'Delete registration' })
   @ApiResponse({ status: 200, description: 'Registration deleted' })
   remove(
